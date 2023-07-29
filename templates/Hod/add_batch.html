@@ -1,0 +1,144 @@
+{% extends 'indexofcouncellor.html' %}
+{% block content %}
+{% load static %}
+<br>
+
+<a class="btn btn-warning" href="/Hod/Batch/view" role="button">View Batch</a>
+
+<section class="content">
+   <br>
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Batch</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'add_batch' %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Batch Name </label>
+                                <input type="text" class="form-control" name="batchname" placeholder="Enter batch">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Course </label>
+                                <select class="form-control" name="coursename">
+                                 <option>Select Course</option>
+
+                                    {% for course in courses %}
+                                        <option value="{{ course.id }}">{{ course.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Staff </label>
+                                <select class="form-control" name="staffname">
+                                 <option>Select Staff</option>
+
+                                    {% for staff in staffes %}
+                                        <option value="{{ staff.id }}">{{ staff.admin.first_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Laptop </label>
+                                <select class="form-control" name="lapname">
+                                 <option>Select Laptop</option>
+
+                                    {% for laptop in laptops %}
+                                        <option value="{{ laptop.id }}">{{ laptop.lapname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Hall </label>
+                                <select class="form-control" name="hallname">
+                                 <option>Select Hall</option>
+
+                                    {% for hall in halls %}
+                                        <option value="{{ hall.id }}">{{ hall.hallname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                           <!-- <div class="form-group">
+                                <label>Student </label>
+                                <select class="form-control" name="stdname">
+                                 <option>Select Student</option>
+
+                                    {% for student in students %}
+                                        <option value="{{ student.id }}">{{ student.admin.first_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>  -->
+
+
+                               <!-- <div class="form-group">
+                                    <label>Start Date </label>
+                                    <input type="Date" class="form-control" name="startdate">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>End Date </label>
+                                    <input type="Date" class="form-control" name="enddate">
+                                </div>
+
+                                -->
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Add Batch</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+{% endblock %}

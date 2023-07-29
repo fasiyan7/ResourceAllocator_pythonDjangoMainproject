@@ -1,0 +1,48 @@
+{% extends 'indexoffaculty.html' %}
+{% block content %}
+<br>
+<h5>Remove Post</h5>
+<hr>
+<div class="dropdown">
+  {% comment %} Display Messages {% endcomment %}
+    {% if messages %}
+    <div class="form-group">
+    <div class="col-12">
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        {% elif message.tags == "success" %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+    {% endif %}
+
+
+  
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Choose Post to be Removed
+    </button>
+    <ul class="dropdown-menu">
+        {% for post in posts %}
+        <li><a class="dropdown-item" href="{% url 'removepost' post.id %}">{{post.title}}  {{post.created}}</a></li>
+        {% endfor %}
+    </ul>
+  </div>
+
+
+
+
+	<hr>	
+{% endblock %}

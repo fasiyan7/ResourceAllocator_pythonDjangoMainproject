@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Mark List</title>
+</head>
+<body>
+    <h1>Student Mark List</h1>
+
+<button type="button">
+    <a class="btn btn-primary" href="{% url 'MakingReport:pdf' %}" role="button">Download PDF</a></button>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Math Marks</th>
+            <th>Science Marks</th>
+            <th>English Marks</th>
+            <th></th>
+        </tr>
+        {% for marklist in marklists %}
+        <tr>
+            <td>{{ marklist.name }}</td>
+            <td>{{ marklist.roll_number }}</td>
+            <td>{{ marklist.marks_math }}</td>
+            <td>{{ marklist.marks_science }}</td>
+            <td>{{ marklist.marks_english }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
